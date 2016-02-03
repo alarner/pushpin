@@ -1,0 +1,28 @@
+{
+  "name": "pushpin",
+  "version": "1.0.0",
+  "description": "A client side library for doing web based push notifications.",
+  "main": "index.js",
+  "bin": {
+    "pushpin": "build.js"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "async": "^1.5.2",
+    "babel-core": "^6.4.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node --use_strict bin/build.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alarner/pushpin.git"
+  },
+  "author": "Aaron Larner",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alarner/pushpin/issues"
+  },
+  "homepage": "https://github.com/alarner/pushpin#readme"
+}
