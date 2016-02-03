@@ -16,7 +16,8 @@ async.each(
 
 
 function convertFile(filepath, cb) {
-	babel.transformFile(path.join(__dirname, '../', filepath), function(err, result) {
+	let options = {presets: ['es2015']};
+	babel.transformFile(path.join(__dirname, '../', filepath), options, function(err, result) {
 		if(err) return cb(err);
 		fs.writeFile(path.join(__dirname, '../dist', filepath), result.code, cb);
 	});

@@ -1,6 +1,10 @@
+'use strict';
+
 module.exports = {
-	subscribe: function (workerPath, options = {}) {
-		return new Promise((resolve, reject) => {
+	subscribe: function subscribe(workerPath) {
+		var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+
+		return new Promise(function (resolve, reject) {
 			if (!('serviceWorker' in navigator)) {
 				return reject('UNSUPPORTED');
 			}
@@ -18,10 +22,10 @@ module.exports = {
 			}
 
 			navigator.serviceWorker.register(workerPath, options);
-			navigator.serviceWorker.ready.then(serviceWorkerRegistration => {
+			navigator.serviceWorker.ready.then(function (serviceWorkerRegistration) {
 				return serviceWorkerRegistration.pushManager.subscribe({ userVisibleOnly: options.userVisibleOnly || true });
-			}).then(subscription => {
-				let subscriptionId = getSubscriptionId(subscription.endpoint);
+			}).then(function (subscription) {
+				var subscriptionId = getSubscriptionId(subscription.endpoint);
 				if (!subscriptionId) {
 					reject('UNKNOWN_SUBSCRIPTION_ID');
 				} else {
@@ -30,11 +34,11 @@ module.exports = {
 			}).catch(reject);
 		});
 	},
-	unsubscribe: function (options) {
-		return new Promise((resolve, reject) => {
-			navigator.serviceWorker.ready.then(serviceWorkerRegistration => {
+	unsubscribe: function unsubscribe(options) {
+		return new Promise(function (resolve, reject) {
+			navigator.serviceWorker.ready.then(function (serviceWorkerRegistration) {
 				return serviceWorkerRegistration.pushManager.getSubscription();
-			}).then(subscription => {
+			}).then(function (subscription) {
 				// Check we have everything we need to unsubscribe
 				if (!subscription) {
 					return resolve(null);
