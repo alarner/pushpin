@@ -2,10 +2,7 @@
   "name": "pushpin",
   "version": "1.0.0",
   "description": "A client side library for doing web based push notifications.",
-  "main": "index.js",
-  "bin": {
-    "pushpin": "build.js"
-  },
+  "main": "dist/index.js",
   "dependencies": {},
   "devDependencies": {
     "async": "^1.5.2",
